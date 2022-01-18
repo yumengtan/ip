@@ -18,7 +18,6 @@ public class Duke {
         while (sc.hasNext()) {
             String command = sc.nextLine();
 
-
             if (command.equals("list")) {
                 giveList();
             } else if (command.equals("bye")) {
@@ -31,6 +30,19 @@ public class Duke {
                     mark(Integer.parseInt(commands[1]));
                 } else if (commands[0].equals("unmark")) {
                     unmark(Integer.parseInt(commands[1]));
+                } else if (commands[0].equals("todo")) {
+                    String toDo = command.substring(command.indexOf(" ") + 1);
+                    addToDo(toDo);
+                } else if (commands[0].equals("deadline")) {
+                    String[] dead = command.split("/by");
+                    String deadline = dead[1];
+                    String description = commands[1];
+                    addDeadline(description, deadline);
+                } else if (commands[0].equals("event")) {
+                    String[] eventTime = command.split("/at");
+                    String description = commands[1];
+                    String time = eventTime[1];
+                    addEvent(description, time);
                 } else {
                     addList(command);
                 }
@@ -40,7 +52,6 @@ public class Duke {
         sc.close();
 
     }
-
 
     public static void addList(String adder) {
         Task curr = new Task(adder);
@@ -85,6 +96,36 @@ public class Duke {
         System.out.println("OK, I've marked this task as not done yet: ");
         task.get(num - 1).unmarkDone();
         System.out.println(task.get(num - 1).getStatusIcon());
+        System.out.println(underscore);
+    }
+
+    public static void addEvent(String desc, String at) {
+        System.out.println(underscore);
+        System.out.println("Got it. I have added this to your desires:");
+        Event curr = new Event(desc, at);
+        task.add(curr);
+        System.out.println(curr);
+        System.out.println("Currently you have " + task.size() + " things yet to be desired");
+        System.out.println(underscore);
+    }
+
+    public static void addToDo(String adder) {
+        System.out.println(underscore);
+        System.out.println("Got it. I have added this to your desires:");
+        Todo curr = new Todo(adder);
+        task.add(curr);
+        System.out.println(curr);
+        System.out.println("Currently you have " + task.size() + " things yet to be desired");
+        System.out.println(underscore);
+    }
+
+    public static void addDeadline(String desc, String by) {
+        System.out.println(underscore);
+        System.out.println("Got it. I have added this to your desires:");
+        Deadline curr = new Deadline(desc, by);
+        task.add(curr);
+        System.out.println(curr);
+        System.out.println("Currently you have " + task.size() + " things yet to be desired");
         System.out.println(underscore);
     }
 }
