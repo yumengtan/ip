@@ -3,11 +3,13 @@
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Duke {
 
     private static ArrayList<Task> task = new ArrayList<>();
     private static final String underscore = "____________________________________________________________";
+    private static final String[] wordCommands = {"todo", "deadline", "event", "list", "mark", "unmark"};
 
     public static void main(String[] args) {
         //greetings
@@ -26,29 +28,31 @@ public class Duke {
                 break;
             } else {
                 String[] commands = command.split(" ");
-                if (commands[0].equals("mark")) {
-                    mark(Integer.parseInt(commands[1]));
-                } else if (commands[0].equals("unmark")) {
-                    unmark(Integer.parseInt(commands[1]));
-                } else if (commands[0].equals("todo")) {
-                    String toDo = command.substring(command.indexOf(" ") + 1);
-                    addToDo(toDo);
-                } else if (commands[0].equals("deadline")) {
-                    String[] dead = command.split("/by");
-                    String deadline = dead[1];
-                    String description = commands[1];
-                    addDeadline(description, deadline);
-                } else if (commands[0].equals("event")) {
-                    String[] eventTime = command.split("/at");
-                    String description = commands[1];
-                    String time = eventTime[1];
-                    addEvent(description, time);
-                } else {
-                    addList(command);
+                if (Arrays.stream(wordCommands).anyMatch(command::contains)) {
+                    if (commands.length == 1) {
+                        notValid();
+                    } else if (commands[0].equals("mark")) {
+                        mark(Integer.parseInt(commands[1]));
+                    } else if (commands[0].equals("unmark")) {
+                        unmark(Integer.parseInt(commands[1]));
+                    } else if (commands[0].equals("todo")) {
+                        String toDo = command.substring(command.indexOf(" ") + 1);
+                        addToDo(toDo);
+                    } else if (commands[0].equals("deadline")) {
+                        String[] dead = command.split("/by");
+                        String deadline = dead[1];
+                        String description = commands[1];
+                        addDeadline(description, deadline);
+                    } else if (commands[0].equals("event")) {
+                        String[] eventTime = command.split("/at");
+                        String description = commands[1];
+                        String time = eventTime[1];
+                        addEvent(description, time);
+                    } } else {
+                        addList(command);
+                    }
                 }
             }
-        }
-
         sc.close();
 
     }
@@ -126,6 +130,15 @@ public class Duke {
         task.add(curr);
         System.out.println(curr);
         System.out.println("Currently you have " + task.size() + " things yet to be desired");
+        System.out.println(underscore);
+    }
+
+    public static void notValid() {
+        System.out.println(underscore);
+        System.out.println("My my, you've got to specify your desire love");
+        System.out.println("( • ∀•)–Ψ Let me help you with an example:");
+        System.out.println("deadline return book /by Sunday");
+        System.out.println("Please try again my dear");
         System.out.println(underscore);
     }
 }
