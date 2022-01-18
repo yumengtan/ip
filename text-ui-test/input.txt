@@ -1,0 +1,8 @@
+sleep
+todo gym
+todo drink water
+deadline return book /by Sunday
+event project meeting /at Mon 2-4pm
+list
+event
+bye
