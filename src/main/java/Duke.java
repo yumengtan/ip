@@ -10,7 +10,7 @@ public class Duke {
 
     private static ArrayList<Task> task = new ArrayList<>();
     private static final String underscore = "____________________________________________________________";
-    private static final String[] wordCommands = {"todo", "deadline", "event", "list", "mark", "unmark"};
+    private static final String[] wordCommands = {"todo", "deadline", "event", "list", "mark", "unmark", "delete"};
 
     public static void main(String[] args) {
         //greetings
@@ -41,15 +41,18 @@ public class Duke {
                     if (Arrays.stream(wordCommands).anyMatch(command::contains)) {
                         if (commands.length == 1) {
                             throw new InvalidException();
-                        } else if (theCommand.equals("mark") || theCommand.equals("unmark")) {
+                        } else if (theCommand.equals("mark") || theCommand.equals("unmark") || theCommand.equals("delete")) {
                             try {
                                 int numList = Integer.parseInt(commands[1]);
                                 if (numList <= 0 || numList > task.size()) {
                                     throw new OutOfBoundsException();
-                                } if (theCommand.equals("mark")) {
+                                }
+                                if (theCommand.equals("mark")) {
                                     mark(numList);
                                 } else if (theCommand.equals("unmark")) {
                                     unmark(numList);
+                                } else if (theCommand.equals("delete")) {
+                                    delete(numList);
                                 }
                             } catch (NumberFormatException | OutOfBoundsException e) {
                                     System.out.println(e.getMessage());
@@ -143,6 +146,15 @@ public class Duke {
         System.out.println(underscore);
     }
 
+    public static void delete(int index) {
+        System.out.println(underscore);
+        System.out.println("Got it. I have removed this to your desires:");
+        System.out.println(task.get(index - 1));
+        task.remove(index - 1);
+        System.out.println("Currently you have " + task.size() + " things yet to be desired");
+        System.out.println(underscore);
+    }
+
     public static void addEvent(String desc, String at) {
         System.out.println(underscore);
         System.out.println("Got it. I have added this to your desires:");
@@ -173,12 +185,6 @@ public class Duke {
         System.out.println(underscore);
     }
 
-    public static void notValid() {
-        System.out.println(underscore);
-        System.out.println("My my, you've got to specify your desire love");
-        System.out.println("( • ∀•)–Ψ Let me help you with an example:");
-        System.out.println("deadline return book /by Sunday");
-        System.out.println("Please try again my dear");
-        System.out.println(underscore);
-    }
+
+
 }
