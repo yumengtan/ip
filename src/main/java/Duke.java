@@ -18,41 +18,80 @@ public class Duke {
         //get input
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {
-            String command = sc.nextLine();
+            try {
 
-            if (command.equals("list")) {
-                giveList();
-            } else if (command.equals("bye")) {
-                //farewell message
-                farewell();
-                break;
-            } else {
-                String[] commands = command.split(" ");
-                if (Arrays.stream(wordCommands).anyMatch(command::contains)) {
-                    if (commands.length == 1) {
-                        notValid();
-                    } else if (commands[0].equals("mark")) {
-                        mark(Integer.parseInt(commands[1]));
-                    } else if (commands[0].equals("unmark")) {
-                        unmark(Integer.parseInt(commands[1]));
-                    } else if (commands[0].equals("todo")) {
-                        String toDo = command.substring(command.indexOf(" ") + 1);
-                        addToDo(toDo);
-                    } else if (commands[0].equals("deadline")) {
-                        String[] dead = command.split("/by");
-                        String deadline = dead[1];
-                        String description = commands[1];
-                        addDeadline(description, deadline);
-                    } else if (commands[0].equals("event")) {
-                        String[] eventTime = command.split("/at");
-                        String description = commands[1];
-                        String time = eventTime[1];
-                        addEvent(description, time);
-                    } } else {
+                String command = sc.nextLine();
+
+                if (command.equals("")) {
+                    throw new EmptyInputException();
+                }
+
+                if (command.equals("list")) {
+                    giveList();
+
+                } else if (command.equals("bye")) {
+                    //farewell message
+                    farewell();
+                    break;
+
+                } else {
+                    String[] commands = command.split(" ");
+                    String theCommand = commands[0];
+                    if (Arrays.stream(wordCommands).anyMatch(command::contains)) {
+                        if (commands.length == 1) {
+                            throw new InvalidException();
+                        } else if (theCommand.equals("mark") || theCommand.equals("unmark")) {
+                            try {
+                                int numList = Integer.parseInt(commands[1]);
+                                if (numList <= 0 || numList > task.size()) {
+                                    throw new OutOfBoundsException();
+                                } if (theCommand.equals("mark")) {
+                                    mark(numList);
+                                } else if (theCommand.equals("unmark")) {
+                                    unmark(numList);
+                                }
+                            } catch (NumberFormatException | OutOfBoundsException e) {
+                                    System.out.println(e.getMessage());
+                                }
+                            }
+                        }  else if (theCommand.equals("todo") || theCommand.equals("deadline") || theCommand.equals("event")) {
+                            String toDo = command.substring(command.indexOf(" ") + 1);
+                            if (commands[1].equals("")) {
+                                throw new InvalidException();
+                            }
+                            if (theCommand.equals("todo")) {
+                            if (toDo.length() == 0) {
+                                throw new WrongFormatException();
+                            } else {
+                                addToDo(toDo);
+                            }
+                        }   else if (theCommand.equals("deadline")) {
+                            String[] dead = command.split("/by");
+                            if (dead[1].isBlank()) {
+                                throw new InvalidException();
+                            } else {
+                                String deadline = dead[1];
+                                String description = commands[1];
+                                addDeadline(description, deadline);
+                            }
+                        } else if (theCommand.equals("event")) {
+                            String[] eventTime = command.split("/at");
+                            if (eventTime[1].isBlank()) {
+                                throw new InvalidException();
+                            } else {
+                                String description = commands[1];
+                                String time = eventTime[1];
+                                addEvent(description, time);
+                            }
+                        }
+                    } else {
                         addList(command);
                     }
                 }
+            } catch (EmptyInputException | WrongFormatException | InvalidException e) {
+                System.out.println(e.getMessage());
             }
+        }
         sc.close();
 
     }
