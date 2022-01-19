@@ -1,6 +1,7 @@
 //Author: Yu Meng
 //A0218371H
 
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +37,7 @@ public class Duke {
 
                 } else {
                     String[] commands = command.split(" ");
-                    String theCommand = commands[0];
+                    String theCommand = commands[0].toLowerCase();
                     if (Arrays.stream(wordCommands).anyMatch(command::contains)) {
                         if (commands.length == 1) {
                             throw new InvalidException();
