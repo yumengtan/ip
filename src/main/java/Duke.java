@@ -1,10 +1,10 @@
 //Author: Yu Meng
 //A0218371H
 
-import java.util.Locale;
-import java.util.Scanner;
-import java.util.ArrayList;
+import DukeExceptions.*;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Duke {
 
@@ -23,7 +23,7 @@ public class Duke {
 
                 String command = sc.nextLine();
 
-                if (command.equals("")) {
+                if (command.isBlank() || command == null) {
                     throw new EmptyInputException();
                 }
 
@@ -34,7 +34,8 @@ public class Duke {
                     //farewell message
                     farewell();
                     break;
-
+                } else if (command.equals("!help")) {
+                    helpCommands();
                 } else {
                     String[] commands = command.split(" ");
                     String theCommand = commands[0].toLowerCase();
@@ -57,21 +58,19 @@ public class Duke {
                             } catch (NumberFormatException | OutOfBoundsException e) {
                                     System.out.println(e.getMessage());
                                 }
-                            }
-                        }  else if (theCommand.equals("todo") || theCommand.equals("deadline") || theCommand.equals("event")) {
-                            String toDo = command.substring(command.indexOf(" ") + 1);
-                            if (commands[1].equals("")) {
-                                throw new InvalidException();
-                            }
-                            if (theCommand.equals("todo")) {
-                            if (toDo.length() == 0) {
-                                throw new WrongFormatException();
-                            } else {
-                                addToDo(toDo);
-                            }
-                        }   else if (theCommand.equals("deadline")) {
+                            } else if (theCommand.equals("todo")) {
+                        String toDo = command.substring(command.indexOf(" ") + 1);
+                        if (!toDo.isBlank()) {
+                            addToDo(toDo);
+                        } else {
+                            throw new WrongFormatException();
+                        }
+                        }  else if (theCommand.equals("deadline")) {
                             String[] dead = command.split("/by");
-                            if (dead[1].isBlank()) {
+                        if (commands[1].equals("")) {
+                            throw new InvalidException();
+                        }
+                        if (dead[1].isBlank()) {
                                 throw new InvalidException();
                             } else {
                                 String deadline = dead[1];
@@ -80,7 +79,10 @@ public class Duke {
                             }
                         } else if (theCommand.equals("event")) {
                             String[] eventTime = command.split("/at");
-                            if (eventTime[1].isBlank()) {
+                        if (commands[1].equals("")) {
+                            throw new InvalidException();
+                        }
+                        if (eventTime[1].isBlank()) {
                                 throw new InvalidException();
                             } else {
                                 String description = commands[1];
@@ -119,14 +121,14 @@ public class Duke {
 
     public static void farewell() {
         System.out.println(underscore);
-        System.out.println("ʕ•́ᴥ•̀ʔっ Oh no! I hate to see you go:(");
+        System.out.println("（￣ｗ￣）Ψ Oh no! I hate to see you go:(");
         System.out.println("Have I granted your desires?\nPlease come back again!");
         System.out.println(underscore);
     }
 
     public static void greeting() {
         System.out.println(underscore);
-        System.out.println("(◍´◕ᴥ◕) Hello there! I'm Lucifer.\nWhat is it you desire today?");
+        System.out.println("↜(╰ •ω• )╯ψ Hello there! I'm Lucifer.\nWhat is it you desire today?");
         System.out.println(underscore);
     }
 
@@ -185,6 +187,19 @@ public class Duke {
         System.out.println(underscore);
     }
 
+    public static void helpCommands() {
+        System.out.println(underscore);
+        System.out.println("Alright love, here are the list of desires I can grant:");
+        System.out.println("\tlist\t :I will show you what your current desires are.");
+        System.out.println("\tdelete\t :I will remove this desires from your current list.");
+        System.out.println("\ttodo (desire)\t :I will add this desire to your todo list.");
+        System.out.println("\tevent (desire) /at (date & time)\t :I will add this desire to your list with the date & time.");
+        System.out.println("\tdeadline (desire) /by (date & time)\t :I will add this desire to your list with its deadline.");
+        System.out.println("\tmark (number)\t :I can mark this desire in your list as done.");
+        System.out.println("\tmark (number)\t :I can unmark this desire in your list as not done.");
+        System.out.println("\tbye\t: I will end our lovely little conversation for now");
+        System.out.println("Now let's let back to what we are doing now shall we? ψ\uD83D\uDC7F\uD83D\uDD31⸸");
+    }
 
 
 }
