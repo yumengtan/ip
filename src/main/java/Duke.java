@@ -111,7 +111,7 @@ public class Duke {
     }
 
     public static void giveList() {
-        System.out.println("Here are the tasks in your list:");
+        System.out.println("Here are the desires in your list:");
         for (int i = 0; i < task.size(); i++) {
             int order = i + 1;
             System.out.println(" " + order + ". " + task.get(i));
@@ -199,6 +199,7 @@ public class Duke {
         System.out.println("\tmark (number)\t :I can unmark this desire in your list as not done.");
         System.out.println("\tbye\t: I will end our lovely little conversation for now");
         System.out.println("Now let's let back to what we are doing now shall we? ψ\uD83D\uDC7F\uD83D\uDD31⸸");
+        System.out.println(underscore);
     }
 
 
