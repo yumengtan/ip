@@ -1,6 +1,8 @@
 //Author: Yu Meng
 //A0218371H
 
+package DukeExceptions;
+
 public class EmptyInputException extends DukeExceptions {
 
     public EmptyInputException() {
