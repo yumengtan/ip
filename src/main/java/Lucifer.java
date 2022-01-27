@@ -4,9 +4,12 @@
 import LuciferExceptions.*;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+
 
 public class Lucifer {
 
@@ -72,6 +75,8 @@ public class Lucifer {
                             throw new WrongFormatException();
                         }
                         }  else if (theCommand.equals("deadline")) {
+                            String dateTime = command.substring(command.indexOf("/"));
+
                             String[] dead = command.split("/by");
                         if (commands[1].equals("")) {
                             throw new InvalidException();
@@ -84,6 +89,8 @@ public class Lucifer {
                                 addDeadline(description, deadline);
                             }
                         } else if (theCommand.equals("event")) {
+                            String dateTime = command.substring(command.indexOf("/"));
+                            LocalDateTime taskDate =
                             String[] eventTime = command.split("/at");
                         if (commands[1].equals("")) {
                             throw new InvalidException();
@@ -97,7 +104,7 @@ public class Lucifer {
                             }
                         }
                     } else {
-                        addList(command);
+                        throw new InvalidException();
                     }
                 }
             } catch (EmptyInputException | WrongFormatException | InvalidException e) {
@@ -107,7 +114,7 @@ public class Lucifer {
         sc.close();
 
     }
-
+    /*
     public static void addList(String adder) {
         Task curr = new Task(adder);
         task.add(curr);
@@ -115,6 +122,7 @@ public class Lucifer {
         System.out.println("added " + curr.description);
         System.out.println(underscore);
     }
+    */
 
     public static void giveList() {
         System.out.println("Here are the desires in your list:");

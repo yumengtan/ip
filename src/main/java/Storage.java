@@ -30,7 +30,7 @@ public class Storage {
             }
         }
         fw.write(tasks);
-        System.out.println("Your wish is my command. Your desires have been updated my love");
+        System.out.println("Your wish is my command. Your desires have been etched into my memories my love");
         fw.close();
     }
 
