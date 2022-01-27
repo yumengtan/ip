@@ -20,14 +20,13 @@ public class Storage {
     }
 
     public void saveFileList(ArrayList<Task> list) throws IOException {
-        System.out.println(".");
         FileWriter fw = new FileWriter(filePath + "/Lucifer.txt");
         String tasks = "";
         for(int i = 0; i < list.size(); i++) {
             if (i == list.size() - 1) {
-                tasks += list.get(i);
+                tasks += list.get(i).saveFormat();
             } else {
-                tasks += list.get(i) + "\n";
+                tasks += list.get(i).saveFormat() + "\n";
             }
         }
         fw.write(tasks);
@@ -45,24 +44,42 @@ public class Storage {
             while(sc.hasNext()) {
                 String curr = sc.nextLine();
                 Character eventType = curr.charAt(0);
-                if (eventType.equals("E")) {
-                    int i = curr.lastIndexOf("]") + 1;
+                System.out.println(curr);
+                if (eventType.equals('E')) {
+                    Character markOrNot = curr.charAt(3);
+                    String theTask = curr.substring(6);
+                    String[] getTask = theTask.split(" | ");
+                    Event currTask = new Event(getTask[0],getTask[2]);
+                    if (markOrNot.equals("1")) {
+                        currTask.markDone();
+                    } else {
+                        currTask.unmarkDone();
+                    }
+                    list.add(currTask);
+
+                } else if (eventType.equals('D')) {
+                    Character markOrNot = curr.charAt(3);
+                    String theTask = curr.substring(6);
+                    String[] getTask = theTask.split(" | ");
+                    Deadline currTask = new Deadline(getTask[0],getTask[2]);
+                    if (markOrNot.equals("1")) {
+                        currTask.markDone();
+                    } else {
+                        currTask.unmarkDone();
+                    }
+                    list.add(currTask);
+
+                } else if (eventType.equals('T')) {
+                    Character markOrNot = curr.charAt(3);
+                    int i = curr.lastIndexOf("|") + 2;
                     String theTask = curr.substring(i);
-                    String[] splitter = curr.split("at");
-                    list.add(new Event(splitter[0],splitter[1]));
-                } else if (eventType.equals("D")) {
-                    int i = curr.lastIndexOf("]") + 1;
-                    String theTask = curr.substring(i);
-                    String[] splitter = theTask.split("by");
-                    list.add(new Deadline(splitter[0],splitter[1]));
-                } else if (eventType.equals("T")) {
-                    int i = curr.lastIndexOf("]") + 1;
-                    String theTask = curr.substring(i);
-                    list.add(new Todo(theTask));
-                } else {
-                    int i = curr.lastIndexOf("]") + 1;
-                    String theTask = curr.substring(i);
-                    list.add(new Task(theTask));
+                    Todo currTask = new Todo(theTask);
+                    if (markOrNot.equals("1")) {
+                        currTask.markDone();
+                    } else {
+                        currTask.unmarkDone();
+                    }
+                    list.add(currTask);
                 }
             }
         }
