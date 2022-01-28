@@ -30,7 +30,9 @@ public class Storage {
             }
         }
         fw.write(tasks);
+
         System.out.println("Your wish is my command. Your desires have been etched into my memories my love");
+
         fw.close();
     }
 
@@ -44,12 +46,12 @@ public class Storage {
             while(sc.hasNext()) {
                 String curr = sc.nextLine();
                 Character eventType = curr.charAt(0);
-                System.out.println(curr);
                 if (eventType.equals('E')) {
                     Character markOrNot = curr.charAt(3);
                     String theTask = curr.substring(6);
-                    String[] getTask = theTask.split(" | ");
-                    Event currTask = new Event(getTask[0],getTask[2]);
+                    String[] getTask = theTask.split(" | ", 3);
+                    Event currTask = new Event(getTask[0], getTask[2]);
+                    currTask.convertDateTime();
                     if (markOrNot.equals("1")) {
                         currTask.markDone();
                     } else {
@@ -60,8 +62,9 @@ public class Storage {
                 } else if (eventType.equals('D')) {
                     Character markOrNot = curr.charAt(3);
                     String theTask = curr.substring(6);
-                    String[] getTask = theTask.split(" | ");
+                    String[] getTask = theTask.split(" | ", 3);
                     Deadline currTask = new Deadline(getTask[0],getTask[2]);
+                    currTask.convertDateTime();
                     if (markOrNot.equals("1")) {
                         currTask.markDone();
                     } else {

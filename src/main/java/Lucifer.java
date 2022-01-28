@@ -4,7 +4,10 @@
 import LuciferExceptions.*;
 
 import java.io.IOException;
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -76,8 +79,7 @@ public class Lucifer {
                         }
                         }  else if (theCommand.equals("deadline")) {
                             String dateTime = command.substring(command.indexOf("/"));
-
-                            String[] dead = command.split("/by");
+                            String[] dead = command.split("/by ");
                         if (commands[1].equals("")) {
                             throw new InvalidException();
                         }
@@ -90,8 +92,8 @@ public class Lucifer {
                             }
                         } else if (theCommand.equals("event")) {
                             String dateTime = command.substring(command.indexOf("/"));
-                            LocalDateTime taskDate =
                             String[] eventTime = command.split("/at");
+
                         if (commands[1].equals("")) {
                             throw new InvalidException();
                         }
@@ -114,6 +116,8 @@ public class Lucifer {
         sc.close();
 
     }
+
+
     /*
     public static void addList(String adder) {
         Task curr = new Task(adder);
@@ -175,6 +179,7 @@ public class Lucifer {
         System.out.println(underscore);
         System.out.println("Got it. I have added this to your desires:");
         Event curr = new Event(desc, at);
+        curr.convertDateTime();
         task.add(curr);
         System.out.println(curr);
         System.out.println("Currently you have " + task.size() + " things yet to be desired");
@@ -195,6 +200,7 @@ public class Lucifer {
         System.out.println(underscore);
         System.out.println("Got it. I have added this to your desires:");
         Deadline curr = new Deadline(desc, by);
+        curr.convertDateTime();
         task.add(curr);
         System.out.println(curr);
         System.out.println("Currently you have " + task.size() + " things yet to be desired");
@@ -207,6 +213,8 @@ public class Lucifer {
         System.out.println("\tlist\t :I will show you what your current desires are.");
         System.out.println("\tdelete\t :I will remove this desires from your current list.");
         System.out.println("\ttodo (desire)\t :I will add this desire to your todo list.");
+        System.out.println("\tevent (desire) /at 31-12-2022 1800\t :I will add this desire to your list with the date & time.");
+        System.out.println("\tdeadline (desire) /by 31-12-2022 1800\t :I will add this desire to your list with its deadline.");
         System.out.println("\tevent (desire) /at (date & time)\t :I will add this desire to your list with the date & time.");
         System.out.println("\tdeadline (desire) /by (date & time)\t :I will add this desire to your list with its deadline.");
         System.out.println("\tmark (number)\t :I can mark this desire in your list as done.");
@@ -215,6 +223,18 @@ public class Lucifer {
         System.out.println("Now let's let back to what we are doing now shall we? ψ\uD83D\uDC7F\uD83D\uDD31⸸");
         System.out.println(underscore);
     }
-
+    /*
+    private static LocalDateTime convert(String dateTime) throws DateTimeException {
+        LocalDateTime old = null;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+            old = LocalDateTime.parse(dateTime, formatter);
+        } catch (DateTimeException e) {
+            System.out.println("My love, you have to give me a correct date format! e.g. 31-12-2022 1800.\n" +
+                    "for help, type !help to see the list of commands available.");
+        }
+        return old;
+    }
+    */
 
 }
