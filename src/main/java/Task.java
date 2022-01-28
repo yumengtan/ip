@@ -1,7 +1,7 @@
 //Author: Yu Meng
 //A0218371H
 
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -20,6 +20,8 @@ public class Task {
     public String getStatusIcon() {
         return ((isDone ? "[X] " : "[ ] ") + this.description); // mark done task with X
     }
+
+    public abstract String saveFormat();
 
     @Override
     public String toString() {
