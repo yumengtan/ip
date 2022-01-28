@@ -31,6 +31,7 @@ public class Storage {
         }
         fw.write(tasks);
         System.out.println("Your desires have been etched into my memories my love.");
+        System.out.println("Your wish is my command. Your desires have been updated my love");
         fw.close();
     }
 
@@ -48,7 +49,7 @@ public class Storage {
                     Character markOrNot = curr.charAt(3);
                     String theTask = curr.substring(6);
                     String[] getTask = theTask.split(" | ", 3);
-                    Event currTask = new Event(getTask[0],getTask[2]);
+                    Event currTask = new Event(getTask[0], getTask[2]);
                     currTask.convertDateTime();
                     if (markOrNot.equals("1")) {
                         currTask.markDone();

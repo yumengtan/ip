@@ -8,11 +8,10 @@ import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-
 
 public class Lucifer {
 
@@ -79,7 +78,6 @@ public class Lucifer {
                         }
                         }  else if (theCommand.equals("deadline")) {
                             String dateTime = command.substring(command.indexOf("/"));
-
                             String[] dead = command.split("/by ");
                         if (commands[1].equals("")) {
                             throw new InvalidException();
@@ -105,8 +103,6 @@ public class Lucifer {
                                 addEvent(description, time);
                             }
                         }
-                    } else {
-                        throw new InvalidException();
                     }
                 }
             } catch (EmptyInputException | WrongFormatException | InvalidException e) {
@@ -204,6 +200,8 @@ public class Lucifer {
         System.out.println("\ttodo (desire)\t :I will add this desire to your todo list.");
         System.out.println("\tevent (desire) /at 31-12-2022 1800\t :I will add this desire to your list with the date & time.");
         System.out.println("\tdeadline (desire) /by 31-12-2022 1800\t :I will add this desire to your list with its deadline.");
+        System.out.println("\tevent (desire) /at (date & time)\t :I will add this desire to your list with the date & time.");
+        System.out.println("\tdeadline (desire) /by (date & time)\t :I will add this desire to your list with its deadline.");
         System.out.println("\tmark (number)\t :I can mark this desire in your list as done.");
         System.out.println("\tmark (number)\t :I can unmark this desire in your list as not done.");
         System.out.println("\tbye\t: I will end our lovely little conversation for now");
