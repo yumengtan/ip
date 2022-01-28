@@ -37,9 +37,10 @@ public class Storage {
         fw.close();
     }
 
-    public void loadList(ArrayList<Task> list) throws IOException {
+    public ArrayList<Task> loadList() throws IOException {
         String directory = filePath + "/Lucifer.txt";
         File file = new File(directory);
+        ArrayList<Task> list = new ArrayList<>();
         try {
             Files.createFile(Paths.get(directory));
         } catch (FileAlreadyExistsException e) {
@@ -89,5 +90,6 @@ public class Storage {
                 }
             }
         }
+        return list;
     }
 }
