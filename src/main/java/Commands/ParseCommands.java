@@ -1,4 +1,5 @@
-import LuciferExceptions.EmptyInputException;
+package Commands;
+
 import LuciferExceptions.InvalidException;
 import LuciferExceptions.OutOfBoundsException;
 import LuciferExceptions.WrongFormatException;
@@ -8,6 +9,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import Task.Task;
+import TaskList.TaskList;
+import UserInterface.Ui;
 
 public class ParseCommands {
 
@@ -68,13 +73,13 @@ public class ParseCommands {
                                 String description = commands[1];
                                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
                                 LocalDateTime old = LocalDateTime.parse(deadline, formatter);
-                                System.out.println(old);
                                 AddCommands.addDeadline(description, old, list);
                             } catch (DateTimeException e) {
                                 System.out.println("My love, you have to give me a correct date format! e.g. 31-12-2022 1800.\n" +
                                         "for help, type !help to see the list of commands available.");
                             }
                         }
+
                     } else if (theCommand.equals("event")) {
                         String dateTime = command.substring(command.indexOf("/"));
                         String[] eventTime = command.split("/at ");
@@ -98,7 +103,9 @@ public class ParseCommands {
                     }
                 }
             }
-        } catch (WrongFormatException | InvalidException | ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("My Love, please give me the correct format! type !help to see the list of commands available");
+        } catch (WrongFormatException | InvalidException e) {
             System.out.println(e.getMessage());
         }
     }

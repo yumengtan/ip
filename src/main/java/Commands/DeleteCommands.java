@@ -1,3 +1,9 @@
+package Commands;
+
+import Task.Task;
+import TaskList.TaskList;
+import UserInterface.Ui;
+
 import java.util.ArrayList;
 
 public class DeleteCommands extends ParseCommands {

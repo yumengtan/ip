@@ -1,3 +1,5 @@
+package UserInterface;
+
 public class Ui {
 
     private static final String underscore = "____________________________________________________________";
