@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -48,9 +50,10 @@ public class Storage {
                 if (eventType.equals('E')) {
                     Character markOrNot = curr.charAt(3);
                     String theTask = curr.substring(6);
-                    String[] getTask = theTask.split(" | ", 3);
-                    Event currTask = new Event(getTask[0], getTask[2]);
-                    currTask.convertDateTime();
+                    String[] getTask = theTask.split("\\|");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+                    LocalDateTime old = LocalDateTime.parse(getTask[1].trim(), formatter);
+                    Event currTask = new Event(getTask[0].trim(), old);
                     if (markOrNot.equals("1")) {
                         currTask.markDone();
                     } else {
@@ -61,9 +64,10 @@ public class Storage {
                 } else if (eventType.equals('D')) {
                     Character markOrNot = curr.charAt(3);
                     String theTask = curr.substring(6);
-                    String[] getTask = theTask.split(" | ", 3);
-                    Deadline currTask = new Deadline(getTask[0],getTask[2]);
-                    currTask.convertDateTime();
+                    String[] getTask = theTask.split("\\|");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+                    LocalDateTime old = LocalDateTime.parse(getTask[1].trim(), formatter);
+                    Deadline currTask = new Deadline(getTask[0].trim(),old);
                     if (markOrNot.equals("1")) {
                         currTask.markDone();
                     } else {

@@ -77,7 +77,6 @@ public class Lucifer {
                             throw new WrongFormatException();
                         }
                         }  else if (theCommand.equals("deadline")) {
-                            String dateTime = command.substring(command.indexOf("/"));
                             String[] dead = command.split("/by ");
                         if (commands[1].equals("")) {
                             throw new InvalidException();
@@ -85,9 +84,17 @@ public class Lucifer {
                         if (dead[1].isBlank()) {
                                 throw new InvalidException();
                             } else {
+                            try {
                                 String deadline = dead[1];
                                 String description = commands[1];
-                                addDeadline(description, deadline);
+                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+                                LocalDateTime old = LocalDateTime.parse(deadline, formatter);
+                                System.out.println(old);
+                                addDeadline(description, old);
+                            } catch (DateTimeException e) {
+                                System.out.println("My love, you have to give me a correct date format! e.g. 31-12-2022 1800.\n" +
+                                        "for help, type !help to see the list of commands available.");
+                            }
                             }
                         } else if (theCommand.equals("event")) {
                             String dateTime = command.substring(command.indexOf("/"));
@@ -98,14 +105,21 @@ public class Lucifer {
                         if (eventTime[1].isBlank()) {
                                 throw new InvalidException();
                             } else {
+                            try {
                                 String description = commands[1];
                                 String time = eventTime[1];
-                                addEvent(description, time);
+                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+                                LocalDateTime old = LocalDateTime.parse(time, formatter);
+                                addEvent(description, old);
+                            } catch (DateTimeException e) {
+                                System.out.println("My love, you have to give me a correct date format! e.g. 31-12-2022 1800.\n" +
+                                        "for help, type !help to see the list of commands available.");
                             }
+                        }
                         }
                     }
                 }
-            } catch (EmptyInputException | WrongFormatException | InvalidException e) {
+            } catch (EmptyInputException | WrongFormatException | InvalidException | ArrayIndexOutOfBoundsException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -160,11 +174,11 @@ public class Lucifer {
         System.out.println(underscore);
     }
 
-    public static void addEvent(String desc, String at) {
+    public static void addEvent(String desc, LocalDateTime old) {
         System.out.println(underscore);
         System.out.println("Got it. I have added this to your desires:");
-        Event curr = new Event(desc, at);
-        curr.convertDateTime();
+        Event curr = new Event(desc, old);
+        //curr.convertDateTime();
         task.add(curr);
         System.out.println(curr);
         System.out.println("Currently you have " + task.size() + " things yet to be desired");
@@ -181,11 +195,10 @@ public class Lucifer {
         System.out.println(underscore);
     }
 
-    public static void addDeadline(String desc, String by) {
+    public static void addDeadline(String desc, LocalDateTime by) {
         System.out.println(underscore);
         System.out.println("Got it. I have added this to your desires:");
         Deadline curr = new Deadline(desc, by);
-        curr.convertDateTime();
         task.add(curr);
         System.out.println(curr);
         System.out.println("Currently you have " + task.size() + " things yet to be desired");
