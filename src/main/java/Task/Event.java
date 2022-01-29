@@ -1,14 +1,23 @@
-package Task;//Author: Yu Meng
-//A0218371H
+package Task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
+/**
+ * Class Event which inherits from Task.
+ * @author Yu Meng
+ */
 public class Event extends Task {
-
+    /** date and time of task **/
     protected LocalDateTime dateTime;
+    /** description of task **/
     protected String at;
 
+    /**
+     * Constructor for Task Objects.
+     *
+     * @param description the description of the task
+     * @param dateTime the date and time of the task
+     */
     public Event(String description, LocalDateTime dateTime) {
         super(description);
         this.dateTime = dateTime;
@@ -16,7 +25,9 @@ public class Event extends Task {
         this.at = formatter.format(this.dateTime);
     }
 
-
+    /**
+     {@inheritdoc}
+     */
     @Override
     public String saveFormat() {
         DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
@@ -24,6 +35,9 @@ public class Event extends Task {
         return "E" + " |" + (this.isDone ? "1" : "0") + "| " + this.description + " | " + dateInString;
     }
 
+    /**
+     {@inheritdoc}
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + this.at + ")";

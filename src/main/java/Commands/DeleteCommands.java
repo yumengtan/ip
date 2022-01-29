@@ -2,17 +2,32 @@ package Commands;
 
 import Task.Task;
 import TaskList.TaskList;
-import UserInterface.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Class DeleteCommmands which inherits from ParseCommands.
+ * @author Yu Meng
+ */
 public class DeleteCommands extends ParseCommands {
-
+    /** line after each command for ui purposes **/
     private static final String underscore = "____________________________________________________________";
 
-    public DeleteCommands(Ui ui, TaskList list) {
-        super(ui, list);
+    /**
+     * Constructor for Class DeleteCommands.
+     *
+     * @param list the list of current tasks
+     */
+    public DeleteCommands(TaskList list) {
+        super(list);
     }
+
+    /**
+     * Deletes the task from the list.
+     *
+     * @param index the index of task to delete in the list
+     * @param list the list of current tasks
+     */
     public static void delete(int index, ArrayList<Task> list) {
         System.out.println(underscore);
         System.out.println("Got it. I have removed this to your desires:");

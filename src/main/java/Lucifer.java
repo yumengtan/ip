@@ -1,6 +1,3 @@
-//Author: Yu Meng
-//A0218371H
-
 import Commands.ParseCommands;
 import LuciferExceptions.*;
 import Storage.Storage;
@@ -11,26 +8,34 @@ import java.io.IOException;
 
 import java.util.Scanner;
 
+  /**
+ * Main class which runs the chatbot Lucifer
+ * @author Yu Meng
+ */
+ public class Lucifer {
 
-public class Lucifer {
-
+     /** Storage which saves or load tasks on hand. **/
     private final Storage storage;
+      /** TaskList which stores the list of user tasks. **/
     private final TaskList tasks;
+      /** TaskList which stores the list of user tasks. **/
     private final Ui ui;
+      /**Ui that represents the interaction messages that user will have with Lucifer chatbot **/
     private final ParseCommands parser;
 
-    //private static ArrayList<Task.Task> task = new ArrayList<>();
-    private static final String underscore = "____________________________________________________________";
-    private static final String[] wordCommands = {"todo", "deadline", "event", "list", "mark", "unmark", "delete"};
-
+      /**
+       * Constructor for Lucifer chatbot.
+       */
     public Lucifer() throws IOException {
         ui = new Ui();
         storage = new Storage(System.getProperty("user.dir"));
         tasks = new TaskList(storage.loadList());
-        parser = new ParseCommands(ui, tasks);
+        parser = new ParseCommands(tasks);
 
     }
-
+      /**
+       * Method that starts the Lucifer chatbot.
+       */
     public void run() {
         ui.greeting();
         Scanner sc = new Scanner(System.in);
@@ -53,6 +58,10 @@ public class Lucifer {
         }
     }
 
+      /**
+       * The main method of Lucifer chatbot.
+       * @param args The input arguments.
+       */
     public static void main(String[] args) throws IOException {
         new Lucifer().run();
     }

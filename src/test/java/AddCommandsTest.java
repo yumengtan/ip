@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AddCommandsTest {
     private TaskList tasks = new TaskList();
-    private ParseCommands parser = new ParseCommands(new Ui(), tasks);
+    private ParseCommands parser = new ParseCommands(tasks);
 
     @Test
     public void addDeadLineTest(){

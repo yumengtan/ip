@@ -1,5 +1,4 @@
-package Storage;//Author: Yu Meng
-//A0218371H
+package Storage;
 
 import Task.Event;
 import Task.*;
@@ -15,15 +14,29 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+/**
+ * Class Storage which stores/load the list of tasks.
+ * @author Yu Meng
+ */
 public class Storage {
-
+    /** directory to save/load. **/
     protected String filePath;
-
+    /**
+     * Constructor for Class Storage.
+     *
+     * @param filePath the path of the file to save/load the tasks
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Saves the list of tasks to the directory.
+     *
+     * @param list the list of tasks
+     * @throws IOException throws exception if unable to save to directory
+     *
+     */
     public void saveFileList(ArrayList<Task> list) throws IOException {
         FileWriter fw = new FileWriter(filePath + "/Lucifer.txt");
         String tasks = "";
@@ -40,6 +53,12 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Saves the list of tasks to the directory.
+     *
+     * @return the list of tasks
+     * @throws IOException throws exception if unable to save to directory
+     */
     public ArrayList<Task> loadList() throws IOException {
         String directory = filePath + "/Lucifer.txt";
         File file = new File(directory);

@@ -1,5 +1,6 @@
 package Commands;
 
+import LuciferExceptions.EmptyInputException;
 import LuciferExceptions.InvalidException;
 import LuciferExceptions.OutOfBoundsException;
 import LuciferExceptions.WrongFormatException;
@@ -14,17 +15,29 @@ import Task.Task;
 import TaskList.TaskList;
 import UserInterface.Ui;
 
+/**
+ * Class ParseCommands which encapsulates the command.
+ * @author Yu Meng
+ */
 public class ParseCommands {
-
+    /** A checker to check if it is within Lucifer chatbot commands **/
     private static final String[] wordCommands = {"todo", "deadline", "event", "list", "mark", "unmark", "delete"};
-    private final Ui ui;
+    /** TaskList which stores the list of user tasks. **/
     private final TaskList task;
 
-    public ParseCommands(Ui ui, TaskList task) {
-        this.ui = ui;
+    /**
+     * Constructor for Class ParseCommands.
+     *
+     * @param task stores the list of task
+     */
+    public ParseCommands(TaskList task) {
         this.task = task;
     }
 
+    /**
+     * Parse the command from input.
+     *
+     */
     public void parseCommand(String command, ArrayList<Task> list) {
         try {
             if (command.equals("list")) {
@@ -101,6 +114,8 @@ public class ParseCommands {
                             }
                         }
                     }
+                } else {
+                    throw new InvalidException();
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {

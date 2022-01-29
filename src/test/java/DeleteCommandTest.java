@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DeleteCommandTest {
-    
+
     @Test
     public void DeleteTask() {
         TaskList tasks = new TaskList();
