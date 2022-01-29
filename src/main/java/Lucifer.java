@@ -31,7 +31,7 @@ public class Lucifer {
 
     }
 
-    public void run() throws IOException {
+    public void run() {
         ui.greeting();
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {

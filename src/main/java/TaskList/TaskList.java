@@ -17,12 +17,17 @@ public class TaskList {
     }
 
     public void giveList() {
-        System.out.println("Here are the desires in your list:");
-        for (int i = 0; i < this.list.size(); i++) {
-            int order = i + 1;
-            System.out.println(" " + order + ". " + this.list.get(i));
+        if (list.size() == 0) {
+            System.out.println("Your list is currently empty!\n" +
+                    "Please input some commands my love.");
+        } else {
+            System.out.println("Here are the desires in your list:");
+            for (int i = 0; i < this.list.size(); i++) {
+                int order = i + 1;
+                System.out.println(" " + order + ". " + this.list.get(i));
+            }
+            System.out.println(underscore);
         }
-        System.out.println(underscore);
     }
 
     public ArrayList<Task> getTaskList() {
