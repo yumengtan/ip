@@ -33,12 +33,15 @@ public class FindCommands extends ParseCommands {
      */
     public void find(String description) {
         System.out.println("Here are the matching desires in your list my love:");
+        int order = 1;
         for (int i = 0; i < list.size(); i++) {
-            int order = 1;
             if (list.get(i).saveFormat().contains(description)) {
                 System.out.println(" " + order + ". " + list.get(i));
                 order ++;
             }
+        }
+        if (order == 1) {
+            System.out.println("You've got nothing like that in your current desires love!");
         }
         System.out.println(UNDERSCORE);
     }
