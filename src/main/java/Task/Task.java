@@ -21,13 +21,13 @@ public abstract class Task {
     }
 
     /**
-     * Mark task as done.
+     * Marks task as done.
      */
     public void markDone() {
         this.isDone = true;
     }
     /**
-     * Mark task as not done.
+     * Marks task as not done.
      */
     public void unmarkDone() {
         this.isDone = false;
@@ -37,11 +37,12 @@ public abstract class Task {
      * Outputs whether the task is done or not.
      */
     public String getStatusIcon() {
-        return ((isDone ? "[X] " : "[ ] ") + this.description); // mark done task with X
+        // Marks done task with X
+        return ((isDone ? "[X] " : "[ ] ") + this.description);
     }
 
     /**
-     * Format the string representation of task objects for
+     * Formats the string representation of task objects for
      * saving to the text file.
      */
     public abstract String saveFormat();

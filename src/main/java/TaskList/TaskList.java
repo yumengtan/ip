@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class TaskList {
     /** line after each command for ui purposes **/
-    private static final String underscore = "____________________________________________________________";
+    private static final String UNDERSCORE = "____________________________________________________________";
     /** ArrayList which stores the tasks **/
     private final ArrayList<Task> list;
     /**
@@ -27,19 +27,20 @@ public class TaskList {
         this.list = list;
     }
     /**
-     * outputs the list of current tasks user has.
+     * Outputs the list of current tasks user has.
      */
     public void giveList() {
         if (list.size() == 0) {
             System.out.println("Your list is currently empty!\n" +
                     "Please input some commands my love.");
+            System.out.println(UNDERSCORE);
         } else {
             System.out.println("Here are the desires in your list:");
             for (int i = 0; i < this.list.size(); i++) {
                 int order = i + 1;
                 System.out.println(" " + order + ". " + this.list.get(i));
             }
-            System.out.println(underscore);
+            System.out.println(UNDERSCORE);
         }
     }
     /**

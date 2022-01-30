@@ -1,6 +1,5 @@
 package Commands;
 
-import LuciferExceptions.EmptyInputException;
 import LuciferExceptions.InvalidException;
 import LuciferExceptions.OutOfBoundsException;
 import LuciferExceptions.WrongFormatException;
@@ -35,7 +34,7 @@ public class ParseCommands {
     }
 
     /**
-     * Parse the command from input.
+     * Parses the command from input.
      *
      */
     public void parseCommand(String command, ArrayList<Task> list) {

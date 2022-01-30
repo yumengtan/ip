@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class MarkCommands extends ParseCommands {
     /** line after each command for ui purposes **/
-    private static final String underscore = "____________________________________________________________";
+    private static final String UNDERSCORE = "____________________________________________________________";
 
     /**
      * Constructor for Class MarkCommands.
@@ -29,11 +29,11 @@ public class MarkCommands extends ParseCommands {
      * @param list the list of current tasks
      */
     public static void mark(int index, ArrayList<Task> list) {
-        System.out.println(underscore);
+        System.out.println(UNDERSCORE);
         System.out.println("Nice! I've marked this task as done: ");
         list.get(index - 1).markDone();
         System.out.println(list.get(index - 1).getStatusIcon());
-        System.out.println(underscore);
+        System.out.println(UNDERSCORE);
     }
     /**
      * Marks the task from the list.
@@ -42,10 +42,10 @@ public class MarkCommands extends ParseCommands {
      * @param list the list of current tasks
      */
     public static void unMark(int index, ArrayList<Task> list) {
-        System.out.println(underscore);
+        System.out.println(UNDERSCORE);
         System.out.println("OK, I've marked this task as not done yet: ");
         list.get(index - 1).unmarkDone();
         System.out.println(list.get(index - 1).getStatusIcon());
-        System.out.println(underscore);
+        System.out.println(UNDERSCORE);
     }
 }

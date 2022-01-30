@@ -1,5 +1,5 @@
 import Commands.ParseCommands;
-import LuciferExceptions.*;
+import LuciferExceptions.EmptyInputException;
 import Storage.Storage;
 import TaskList.TaskList;
 import UserInterface.Ui;
@@ -34,9 +34,9 @@ import java.util.Scanner;
 
     }
       /**
-       * Method that starts the Lucifer chatbot.
+       * Starts the Lucifer chatbot.
        */
-    public void run() {
+    private void run() {
         ui.greeting();
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {

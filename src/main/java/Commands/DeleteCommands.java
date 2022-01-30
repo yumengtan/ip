@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class DeleteCommands extends ParseCommands {
     /** line after each command for ui purposes **/
-    private static final String underscore = "____________________________________________________________";
+    private static final String UNDERSCORE = "____________________________________________________________";
 
     /**
      * Constructor for Class DeleteCommands.
@@ -29,11 +29,11 @@ public class DeleteCommands extends ParseCommands {
      * @param list the list of current tasks
      */
     public static void delete(int index, ArrayList<Task> list) {
-        System.out.println(underscore);
+        System.out.println(UNDERSCORE);
         System.out.println("Got it. I have removed this to your desires:");
         System.out.println(list.get(index - 1));
         list.remove(index - 1);
         System.out.println("Currently you have " + list.size() + " things yet to be desired");
-        System.out.println(underscore);
+        System.out.println(UNDERSCORE);
     }
 }
