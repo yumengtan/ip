@@ -7,10 +7,8 @@ import LuciferExceptions.WrongFormatException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
 
-import Task.Task;
 import TaskList.TaskList;
 import UserInterface.Ui;
 
@@ -20,14 +18,14 @@ import UserInterface.Ui;
  */
 public class ParseCommands {
     /** A checker to check if it is within Lucifer chatbot commands **/
-    private static final String[] wordCommands = {"todo", "deadline", "event", "list", "mark", "unmark", "delete"};
+    private static final String[] WORD_COMMANDS = {"todo", "deadline", "event", "list", "mark", "unmark", "delete", "find"};
     /** TaskList which stores the list of user tasks. **/
     private final TaskList task;
 
     /**
      * Constructor for Class ParseCommands.
      *
-     * @param task stores the list of task
+     * @param task the class that stores the list of tasks
      */
     public ParseCommands(TaskList task) {
         this.task = task;
@@ -35,9 +33,12 @@ public class ParseCommands {
 
     /**
      * Parses the command from input.
-     *
      */
-    public void parseCommand(String command, ArrayList<Task> list) {
+    public void parseCommand(String command) {
+        DeleteCommands deleter = new DeleteCommands(this.task);
+        MarkCommands marker = new MarkCommands(this.task);
+        FindCommands finder = new FindCommands(this.task);
+        AddCommands adder = new AddCommands(this.task);
         try {
             if (command.equals("list")) {
                 task.giveList();
@@ -46,29 +47,31 @@ public class ParseCommands {
             } else {
                 String[] commands = command.split(" ");
                 String theCommand = commands[0].toLowerCase();
-                if (Arrays.stream(wordCommands).anyMatch(command::contains)) {
+                if (Arrays.stream(WORD_COMMANDS).anyMatch(command::contains)) {
                     if (commands.length == 1) {
                         throw new InvalidException();
                     } else if (theCommand.equals("mark") || theCommand.equals("unmark") || theCommand.equals("delete")) {
                         try {
                             int numList = Integer.parseInt(commands[1]);
-                            if (numList <= 0 || numList > list.size()) {
+                            if (numList <= 0 || numList > task.getTaskList().size()) {
                                 throw new OutOfBoundsException();
                             }
                             if (theCommand.equals("mark")) {
-                                MarkCommands.mark(numList, list);
+                                marker.mark(numList);
                             } else if (theCommand.equals("unmark")) {
-                                MarkCommands.unMark(numList, list);
+                                marker.unMark(numList);
                             } else if (theCommand.equals("delete")) {
-                                DeleteCommands.delete(numList, list);
+                                deleter.delete(numList);
                             }
                         } catch (NumberFormatException | OutOfBoundsException e) {
                             System.out.println(e.getMessage());
                         }
+                    } else if(theCommand.equals("find")) {
+                        finder.find(commands[1]);
                     } else if (theCommand.equals("todo")) {
                         String toDo = command.substring(command.indexOf(" ") + 1);
                         if (!toDo.isBlank()) {
-                            AddCommands.addToDo(toDo, list);
+                            adder.addToDo(toDo);
                         } else {
                             throw new WrongFormatException();
                         }
@@ -85,7 +88,7 @@ public class ParseCommands {
                                 String description = commands[1];
                                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
                                 LocalDateTime old = LocalDateTime.parse(deadline, formatter);
-                                AddCommands.addDeadline(description, old, list);
+                                adder.addDeadline(description, old);
                             } catch (DateTimeException e) {
                                 System.out.println("My love, you have to give me a correct date format! e.g. 31-12-2022 1800.\n" +
                                         "for help, type !help to see the list of commands available.");
@@ -93,7 +96,6 @@ public class ParseCommands {
                         }
 
                     } else if (theCommand.equals("event")) {
-                        String dateTime = command.substring(command.indexOf("/"));
                         String[] eventTime = command.split("/at ");
                         if (commands[1].equals("")) {
                             throw new InvalidException();
@@ -106,7 +108,7 @@ public class ParseCommands {
                                 String time = eventTime[1];
                                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
                                 LocalDateTime old = LocalDateTime.parse(time, formatter);
-                                AddCommands.addEvent(description, old, list);
+                                adder.addEvent(description, old);
                             } catch (DateTimeException e) {
                                 System.out.println("My love, you have to give me a correct date format! e.g. 31-12-2022 1800.\n" +
                                         "for help, type !help to see the list of commands available.");
