@@ -16,14 +16,17 @@ import java.util.ArrayList;
 public class AddCommands extends ParseCommands{
     /** line after each command for ui purposes **/
     private static final String UNDERSCORE = "____________________________________________________________";
+    /** list that stores all the task **/
+    private ArrayList<Task> list;
 
     /**
      * Constructor for Class AddCommands.
      *
-     * @param list the list of current tasks
+     * @param task the class that stores the list of tasks
      */
-    public AddCommands(TaskList list) {
-        super(list);
+    public AddCommands(TaskList task) {
+        super(task);
+        this.list = task.getTaskList();
     }
 
     /**
@@ -31,13 +34,11 @@ public class AddCommands extends ParseCommands{
      *
      * @param desc the description of task
      * @param old the user input format of the event date
-     * @param list the list of current tasks
      */
-    public static void addEvent(String desc, LocalDateTime old, ArrayList<Task> list) {
+    public void addEvent(String desc, LocalDateTime old) {
         System.out.println(UNDERSCORE);
         System.out.println("Got it. I have added this to your desires:");
         Event curr = new Event(desc, old);
-        //curr.convertDateTime();
         list.add(curr);
         System.out.println(curr);
         System.out.println("Currently you have " + list.size() + " things yet to be desired");
@@ -48,9 +49,8 @@ public class AddCommands extends ParseCommands{
      *
      * @param description the description of task
      * @param by the date and time of the task deadline
-     * @param list the list of current tasks
      */
-    public static void addDeadline(String description, LocalDateTime by, ArrayList<Task> list) {
+    public void addDeadline(String description, LocalDateTime by) {
         System.out.println(UNDERSCORE);
         System.out.println("Got it. I have added this to your desires:");
         Deadline curr = new Deadline(description, by);
@@ -64,9 +64,8 @@ public class AddCommands extends ParseCommands{
      * Adds the task to the list if it is of type Todo.
      *
      * @param description the description of task
-     * @param list the list of current tasks
      */
-    public static void addToDo(String description, ArrayList<Task> list) {
+    public void addToDo(String description) {
         System.out.println(UNDERSCORE);
         System.out.println("Got it. I have added this to your desires:");
         Todo curr = new Todo(description);

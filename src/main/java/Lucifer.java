@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
   /**
- * Main class which runs the chatbot Lucifer
+ * Main class which runs the Lucifer chatbot
  * @author Yu Meng
  */
  public class Lucifer {
@@ -50,7 +50,7 @@ import java.util.Scanner;
                     storage.saveFileList(tasks.getTaskList());
                     break;
                 } else {
-                    parser.parseCommand(command, tasks.getTaskList());
+                    parser.parseCommand(command);
                 }
             } catch (EmptyInputException | IOException e) {
                 e.getMessage();

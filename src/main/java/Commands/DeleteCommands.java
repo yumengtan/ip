@@ -12,23 +12,25 @@ import java.util.ArrayList;
 public class DeleteCommands extends ParseCommands {
     /** line after each command for ui purposes **/
     private static final String UNDERSCORE = "____________________________________________________________";
+    /** list that stores all the task **/
+    private ArrayList<Task> list;
 
     /**
      * Constructor for Class DeleteCommands.
      *
-     * @param list the list of current tasks
+     * @param task the class that stores the list of tasks
      */
-    public DeleteCommands(TaskList list) {
-        super(list);
+    public DeleteCommands(TaskList task) {
+        super(task);
+        this.list = task.getTaskList();
     }
 
     /**
      * Deletes the task from the list.
      *
      * @param index the index of task to delete in the list
-     * @param list the list of current tasks
      */
-    public static void delete(int index, ArrayList<Task> list) {
+    public void delete(int index) {
         System.out.println(UNDERSCORE);
         System.out.println("Got it. I have removed this to your desires:");
         System.out.println(list.get(index - 1));

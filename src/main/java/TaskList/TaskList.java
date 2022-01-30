@@ -19,13 +19,14 @@ public class TaskList {
     public TaskList() {
         this.list = new ArrayList<Task>();
     }
+
     /**
      * Constructor for Class Ui if there is a saved list.
      */
     public TaskList(ArrayList<Task> list) {
-
         this.list = list;
     }
+
     /**
      * Outputs the list of current tasks user has.
      */
@@ -43,6 +44,7 @@ public class TaskList {
             System.out.println(UNDERSCORE);
         }
     }
+
     /**
      * Returns list of tasks for JUnit test.
      *
