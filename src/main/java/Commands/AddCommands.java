@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Class AddCommmands which inherits from ParseCommands.
  * @author Yu Meng
  */
-public class AddCommands extends ParseCommands{
+public class AddCommands extends ParseCommands {
     /** line after each command for ui purposes **/
     private static final String UNDERSCORE = "____________________________________________________________";
     /** list that stores all the task **/

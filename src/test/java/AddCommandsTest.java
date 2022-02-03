@@ -3,7 +3,7 @@ import Task.Deadline;
 import Task.Event;
 import Task.Todo;
 import TaskList.TaskList;
-import UserInterface.Ui;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -30,3 +30,4 @@ public class AddCommandsTest {
     }
 
 }
+
