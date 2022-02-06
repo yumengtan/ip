@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: Lucifer
+Lucifer.GUI.Main-Class: Lucifer.Lucifer
 

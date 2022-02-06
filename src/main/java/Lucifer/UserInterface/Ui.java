@@ -1,7 +1,7 @@
-package UserInterface;
+package Lucifer.UserInterface;
 
 /**
- * Class Ui that represents the interaction messages that user will have with Lucifer chatbot.
+ * Class Ui that represents the interaction messages that user will have with Lucifer.Lucifer chatbot.
  * @author Yu Meng
  */
 public class Ui {
@@ -27,12 +27,12 @@ public class Ui {
      */
     @SuppressWarnings("checkstyle:Regexp")
     public String greeting() {
-        return UNDERSCORE + "\n↜(╰ •ω• )╯ψ Hello there! I'm Lucifer.\nWhat is it you desire today?"
+        return UNDERSCORE + "\n↜(╰ •ω• )╯ψ Hello there! I'm Lucifer.Lucifer.\nWhat is it you desire today?"
                 + UNDERSCORE;
     }
 
     /**
-     * Prints the list of desires Lucifer chatbot can receive as input should user provide invalid input.
+     * Prints the list of desires Lucifer.Lucifer chatbot can receive as input should user provide invalid input.
      */
     public String helpCommands() {
         return UNDERSCORE + "Alright love, here are the list of desires I can grant:\n"

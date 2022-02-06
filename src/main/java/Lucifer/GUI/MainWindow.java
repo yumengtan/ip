@@ -1,6 +1,7 @@
-package GUI;
+package Lucifer.GUI;
 
-import LuciferExceptions.EmptyInputException;
+import Lucifer.Lucifer;
+import Lucifer.LuciferExceptions.EmptyInputException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,7 +14,7 @@ import javafx.scene.layout.VBox;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Controller for GUI.MainWindow. Provides the layout for the other controls.
+ * Controller for Lucifer.GUI.MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
     @FXML

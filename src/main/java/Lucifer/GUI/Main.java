@@ -1,8 +1,8 @@
-package Lucifer;
+package Lucifer.GUI;
 
 import java.io.IOException;
 
-import Lucifer.GUI.MainWindow;
+import Lucifer.Lucifer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

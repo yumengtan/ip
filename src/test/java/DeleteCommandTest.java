@@ -1,9 +1,9 @@
-import Commands.ParseCommands;
-import Task.Deadline;
-import Task.Event;
-import Task.Task;
-import Task.Todo;
-import TaskList.TaskList;
+import Lucifer.Commands.ParseCommands;
+import Lucifer.Task.Deadline;
+import Lucifer.Task.Event;
+import Lucifer.Task.Task;
+import Lucifer.Task.Todo;
+import Lucifer.TaskList.TaskList;
 
 import org.junit.jupiter.api.Test;
 

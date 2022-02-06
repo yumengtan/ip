@@ -1,12 +1,14 @@
+package Lucifer;
+
 import java.io.IOException;
 import java.util.Scanner;
 
-import Commands.ParseCommands;
-import GUI.DialogBox;
-import LuciferExceptions.EmptyInputException;
-import Storage.Storage;
-import TaskList.TaskList;
-import UserInterface.Ui;
+import Lucifer.Commands.ParseCommands;
+import Lucifer.GUI.DialogBox;
+import Lucifer.LuciferExceptions.EmptyInputException;
+import Lucifer.Storage.Storage;
+import Lucifer.TaskList.TaskList;
+import Lucifer.UserInterface.Ui;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,25 +22,25 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 
 /**
- * Main class which runs the Lucifer chatbot
+ * Lucifer.GUI.Main class which runs the Lucifer.Lucifer chatbot
  * @author Yu Meng
  */
  public class Lucifer extends Application {
 
       /**
-       * Storage which saves or load tasks on hand.
+       * Lucifer.Storage which saves or load tasks on hand.
        **/
       private final Storage storage;
       /**
-       * TaskList which stores the list of user tasks.
+       * Lucifer.TaskList which stores the list of user tasks.
        **/
       private final TaskList tasks;
       /**
-       * TaskList which stores the list of user tasks.
+       * Lucifer.TaskList which stores the list of user tasks.
        **/
       private final Ui ui;
       /**
-       * Ui that represents the interaction messages that user will have with Lucifer chatbot
+       * Ui that represents the interaction messages that user will have with Lucifer.Lucifer chatbot
        **/
       private final ParseCommands parser;
 
@@ -51,7 +53,7 @@ import javafx.scene.image.Image;
       private Image lucifer = new Image(this.getClass().getResourceAsStream("/images/Lucifer.jpg"));
 
       /**
-       * Constructor for Lucifer chatbot.
+       * Constructor for Lucifer.Lucifer chatbot.
        */
       public Lucifer() throws IOException {
           ui = new Ui();
@@ -62,7 +64,7 @@ import javafx.scene.image.Image;
       }
 
       /**
-       * Starts the Lucifer chatbot.
+       * Starts the Lucifer.Lucifer chatbot.
        */
       private void run() {
           ui.greeting();
@@ -87,7 +89,7 @@ import javafx.scene.image.Image;
       }
 
       /**
-       * The main method of Lucifer chatbot.
+       * The main method of Lucifer.Lucifer chatbot.
        *
        * @param args The input arguments.
        */
@@ -214,7 +216,7 @@ import javafx.scene.image.Image;
        * You should have your own function to generate a response to user input.
        * Replace this stub with your completed method.
        */
-      String getResponse(String input) throws EmptyInputException {
+      public String getResponse(String input) throws EmptyInputException {
           String output;
           try {
               if (input.isBlank() || input == null) {
