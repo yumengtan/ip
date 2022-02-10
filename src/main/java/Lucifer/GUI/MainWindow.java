@@ -2,16 +2,17 @@ package Lucifer.GUI;
 
 import Lucifer.Lucifer;
 import Lucifer.LuciferExceptions.EmptyInputException;
+import Lucifer.UserInterface.Ui;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
-import java.util.concurrent.TimeUnit;
+import java.util.Objects;
+
 
 /**
  * Controller for Lucifer.GUI.MainWindow. Provides the layout for the other controls.
@@ -23,17 +24,25 @@ public class MainWindow extends AnchorPane {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
-    @FXML
-    private Button sendButton;
 
     private Lucifer lucifer;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
-    private Image luciferImage = new Image(this.getClass().getResourceAsStream("/images/Lucifer.jpg"));
-
+    private Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/User.png")));
+    private Image luciferImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Lucifer.jpg")));
+    private Image background = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Background.jpg")));
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        String greeting = Ui.greeting();
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(greeting, luciferImage)
+        );
+        BackgroundImage backgrnd = new BackgroundImage(background,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(1, 1, true, true, false, false));
+        dialogContainer.setBackground(new Background(backgrnd));
     }
 
     public void setLucifer(Lucifer l) {
@@ -45,7 +54,7 @@ public class MainWindow extends AnchorPane {
      * the dialog container. Clears the user input after processing.
      */
     @FXML
-    private void handleUserInput() throws InterruptedException, EmptyInputException {
+    private void handleUserInput() {
         String input = userInput.getText();
         String response = lucifer.getResponse(input);
         dialogContainer.getChildren().addAll(
@@ -53,7 +62,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, luciferImage)
         );
         if (input.startsWith("bye")) {
-            TimeUnit.SECONDS.sleep(3);
+            Ui.farewell();
             Platform.exit();
         }
         userInput.clear();

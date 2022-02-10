@@ -5,9 +5,6 @@ package Lucifer.UserInterface;
  * @author Yu Meng
  */
 public class Ui {
-    /** line after each command for ui purposes **/
-    public static final String UNDERSCORE = "____________________________________________________________";
-
     /**
      * Constructor for Class Ui.
      */
@@ -17,34 +14,32 @@ public class Ui {
     /**
      * Prints the farewell message when user inputs "bye".
      */
-    public String farewell() {
-         return UNDERSCORE + "\n（￣ｗ￣）Ψ Oh no! I hate to see you go:(\n" +
-                "Have I granted your desires?\nPlease come back again!\n" + UNDERSCORE;
+    public static String farewell() {
+         return "\uD83D\uDC7F\uD83D\uDD31 Oh no! I hate to see you go:(\n"
+                + "Have I granted your desires?\nPlease come back again!\n";
     }
 
     /**
      * Prints the opening message when chatbot runs.
      */
     @SuppressWarnings("checkstyle:Regexp")
-    public String greeting() {
-        return UNDERSCORE + "\n↜(╰ •ω• )╯ψ Hello there! I'm Lucifer.Lucifer.\nWhat is it you desire today?"
-                + UNDERSCORE;
+    public static String greeting() {
+        return "\uD83D\uDC7F\uD83D\uDD31 Hello there! I'm Lucifer.\nWhat is it you desire today?";
     }
 
     /**
      * Prints the list of desires Lucifer.Lucifer chatbot can receive as input should user provide invalid input.
      */
-    public String helpCommands() {
-        return UNDERSCORE + "Alright love, here are the list of desires I can grant:\n"
-                + "\tlist\t :I will show you what your current desires are."
-                + "\tdelete (number)\t :I will remove this desires from your current list."
-                + "\ttodo (desire)\t :I will add this desire to your todo list."
-                + "\tevent (desire) /at 31-12-2022 1800\t :I will add this desire to your list with the date & time."
-                + "\tdeadline (desire) /by 31-12-2022 1800\t :I will add this desire to your list with its deadline."
-                + "\tmark (number)\t :I can mark this desire in your list as done."
-                + "\tunmark (number)\t :I can unmark this desire in your list as not done."
-                + "\tbye\t: I will end our lovely little conversation for now"
-                + "Now let's let back to what we are doing now shall we? ψ\uD83D\uDC7F\uD83D\uDD31⸸"
-                + UNDERSCORE;
+    public static String helpCommands() {
+        return "Alright love, here are the list of desires I can grant:\n"
+                + "list:  I will show you what your current desires are."
+                + "\ndelete (number):  I will remove this desires from your current list."
+                + "\ntodo (desire):  I will add this desire to your todo list."
+                + "\nevent (desire) /at 31-12-2022 1800:  I will add this desire to your list with the date & time."
+                + "\ndeadline (desire) /by 31-12-2022 1800:  I will add this desire to your list with its deadline."
+                + "\nmark (number):  I can mark this desire in your list as done."
+                + "\nunmark (number):  I can unmark this desire in your list as not done."
+                + "\nbye: I will end our lovely little conversation for now"
+                + "\nNow let's let back to what we are doing now shall we? \uD83D\uDC7F\uD83D\uDD31";
     }
 }
