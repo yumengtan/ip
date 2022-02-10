@@ -40,6 +40,8 @@ public class Ui {
                 + "\nmark (number):  I can mark this desire in your list as done."
                 + "\nunmark (number):  I can unmark this desire in your list as not done."
                 + "\nbye: I will end our lovely little conversation for now"
+                + "\nfind: I will find the desire you are looking for in your current desires"
+                + "\nclear: I will remove all your current desires"
                 + "\nNow let's let back to what we are doing now shall we? \uD83D\uDC7F\uD83D\uDD31";
     }
 }

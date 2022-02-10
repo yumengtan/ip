@@ -11,7 +11,7 @@ import Lucifer.UserInterface.Ui;
  */
 public class ParseCommands {
     /** A checker to check if it is within Lucifer.Lucifer chatbot commands **/
-    private static final String[] WORD_COMMANDS = {"todo", "deadline", "event", "list", "mark", "unmark", "delete", "find"};
+    private static final String[] WORD_COMMANDS = {"todo", "deadline", "event", "list", "mark", "unmark", "delete", "find", "clear"};
     /** Lucifer.TaskList which stores the list of user tasks. **/
     private final TaskList task;
 
@@ -55,6 +55,8 @@ public class ParseCommands {
                 output = adder.addDeadline(command);
             } else if (theCommand.equals("event")) {
                 output = adder.addEvent(command);
+            } else if (theCommand.equals("clear")) {
+                output = deleter.clear(command);
             }
         }
         return output;

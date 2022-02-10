@@ -49,4 +49,22 @@ public class DeleteCommands extends ParseCommands {
             return e.getMessage();
         }
     }
+    /**
+     * Clears the user task list.
+     *
+     * @param input the user input
+     */
+    public String clear(String input) {
+        String[] split = input.split(" ");
+        if (!split[1].isBlank()) {
+            return "I can't understand what you mean my dear.\n" + "for the list of desires I can grant, type !help";
+        } else {
+            if (list.isEmpty()) {
+                return "You don't have any desires currently my dear.";
+            } else {
+                list.clear();
+                return "Got it. I have cleared all to your desires in your list.";
+            }
+        }
+    }
 }

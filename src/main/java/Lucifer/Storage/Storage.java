@@ -40,7 +40,7 @@ public class Storage {
     public void saveFileList(ArrayList<Task> list) throws IOException {
         FileWriter fw = new FileWriter(filePath + "/Lucifer.Lucifer.txt");
         String tasks = "";
-        for(int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             if (i == list.size() - 1) {
                 tasks += list.get(i).saveFormat();
             } else {
