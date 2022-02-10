@@ -32,6 +32,7 @@ public class Event extends Task {
     public String saveFormat() {
         DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
         String dateInString = this.dateTime.format(formatter1);
+        assert this.isDone ? true : false;
         return "E" + " |" + (this.isDone ? "1" : "0") + "| " + this.description + " | " + dateInString;
     }
 
