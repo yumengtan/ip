@@ -17,20 +17,20 @@ public abstract class Task {
      */
     public Task(String description) {
         this.description = description;
-        this.isDone = false;
+        assert this.isDone = false;
     }
 
     /**
      * Marks task as done.
      */
     public void markDone() {
-        this.isDone = true;
+        assert this.isDone = true;
     }
     /**
      * Marks task as not done.
      */
     public void unmarkDone() {
-        this.isDone = false;
+        assert this.isDone = false;
     }
 
     /**
