@@ -1,18 +1,16 @@
 package Lucifer.GUI;
 
+import java.util.Objects;
+
 import Lucifer.Lucifer;
-import Lucifer.LuciferExceptions.EmptyInputException;
 import Lucifer.UserInterface.Ui;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-
-import java.util.Objects;
-
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 /**
  * Controller for Lucifer.GUI.MainWindow. Provides the layout for the other controls.
@@ -24,12 +22,12 @@ public class MainWindow extends AnchorPane {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
-
     private Lucifer lucifer;
-
     private Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/User.png")));
     private Image luciferImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Lucifer.jpg")));
-    private Image background = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Background.jpg")));
+    /**
+     * Initializes the GUI.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -37,12 +35,6 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(greeting, luciferImage)
         );
-        BackgroundImage backgrnd = new BackgroundImage(background,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,
-                new BackgroundSize(1, 1, true, true, false, false));
-        dialogContainer.setBackground(new Background(backgrnd));
     }
 
     public void setLucifer(Lucifer l) {

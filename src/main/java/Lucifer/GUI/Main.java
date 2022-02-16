@@ -30,6 +30,7 @@ public class Main extends Application {
             stage.setTitle("Lucifer");
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            stage.setResizable(false);
             fxmlLoader.<MainWindow>getController().setLucifer(lucifer);
             stage.show();
         } catch (IOException e) {
