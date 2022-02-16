@@ -1,11 +1,11 @@
-package Lucifer.Commands;
+package lucifer.commands;
 
 import java.util.ArrayList;
 
-import Lucifer.LuciferExceptions.InvalidException;
-import Lucifer.LuciferExceptions.OutOfBoundsException;
-import Lucifer.Task.Task;
-import Lucifer.TaskList.TaskList;
+import lucifer.exceptions.InvalidException;
+import lucifer.exceptions.OutOfBoundsException;
+import lucifer.task.Task;
+import lucifer.tasklist.TaskList;
 
 /**
  * Class MarkCommmands which inherits from ParseCommands.
@@ -13,7 +13,7 @@ import Lucifer.TaskList.TaskList;
  */
 public class MarkCommands extends ParseCommands {
     /** list that stores all the task **/
-    private ArrayList<Task> list;
+    private final ArrayList<Task> list;
 
     /**
      * Constructor for Class MarkCommands.

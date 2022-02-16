@@ -1,17 +1,17 @@
-package Lucifer.Commands;
+package lucifer.commands;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import Lucifer.LuciferExceptions.InvalidException;
-import Lucifer.LuciferExceptions.WrongFormatException;
-import Lucifer.Task.Deadline;
-import Lucifer.Task.Event;
-import Lucifer.Task.Task;
-import Lucifer.Task.Todo;
-import Lucifer.TaskList.TaskList;
+import lucifer.exceptions.InvalidException;
+import lucifer.exceptions.WrongFormatException;
+import lucifer.task.Deadline;
+import lucifer.task.Event;
+import lucifer.task.Task;
+import lucifer.task.Todo;
+import lucifer.tasklist.TaskList;
 
 
 /**
@@ -44,7 +44,8 @@ public class AddCommands extends ParseCommands {
             if (split[1].equals("") || eventTime[1].isBlank()) {
                 throw new InvalidException();
             } else {
-                String description = split[1];
+                int index = input.indexOf("/");
+                String description = input.substring(6, index);
                 String time = eventTime[1];
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
                 LocalDateTime old = LocalDateTime.parse(time, formatter);
@@ -76,7 +77,8 @@ public class AddCommands extends ParseCommands {
                 throw new InvalidException();
             } else {
                 String deadline = dead[1];
-                String description = split[1];
+                int index = input.indexOf("/");
+                String description = input.substring(9, index);
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
                 LocalDateTime old = LocalDateTime.parse(deadline, formatter);
                 String output = "Got it. I have added this to your desires:\n";

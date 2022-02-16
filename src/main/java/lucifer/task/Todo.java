@@ -1,13 +1,13 @@
-package Lucifer.Task;
+package lucifer.task;
 
 /**
- * Class Todo which inherits from Lucifer.Task.
+ * Class Todo which inherits from Task.
  * @author Yu Meng
  */
 public class Todo extends Task {
 
     /**
-     * Constructor for Lucifer.Task Objects.
+     * Constructor for Todo Class.
      *
      * @param description the description of the task
      */

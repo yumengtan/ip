@@ -1,4 +1,4 @@
-package Lucifer.GUI;
+package lucifer.gui;
 
 import javafx.application.Application;
 

@@ -1,11 +1,11 @@
-package Lucifer.TaskList;
-
-import Lucifer.Task.Task;
+package lucifer.tasklist;
 
 import java.util.ArrayList;
 
+import lucifer.task.Task;
+
 /**
- * Class Lucifer.TaskList that handles the list of tasks.
+ * Class TaskList that handles the list of tasks.
  * @author Yu Meng
  */
 public class TaskList {

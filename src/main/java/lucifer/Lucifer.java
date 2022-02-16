@@ -1,18 +1,18 @@
-package Lucifer;
+package lucifer;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-import Lucifer.Commands.ParseCommands;
-import Lucifer.LuciferExceptions.EmptyInputException;
-import Lucifer.LuciferExceptions.InvalidException;
-import Lucifer.Storage.Storage;
-import Lucifer.TaskList.TaskList;
-import Lucifer.UserInterface.Ui;
+import lucifer.commands.ParseCommands;
+import lucifer.exceptions.EmptyInputException;
+import lucifer.exceptions.InvalidException;
+import lucifer.storage.Storage;
+import lucifer.tasklist.TaskList;
+import lucifer.ui.Ui;
 
 
 /**
- * Lucifer.GUI.Main class which runs the Lucifer.Lucifer chatbot
+ * Main class which runs the Lucifer chatbot
  * @author Yu Meng
  */
 public class Lucifer {
@@ -25,26 +25,20 @@ public class Lucifer {
      **/
     private final TaskList tasks;
     /**
-     * Lucifer.TaskList which stores the list of user tasks.
-     **/
-    private final Ui ui;
-    /**
      * Ui that represents the interaction messages that user will have with Lucifer.Lucifer chatbot
      **/
     private final ParseCommands parser;
 
     /**
-       * Constructor for Lucifer.Lucifer chatbot.
+       * Constructor for Lucifer chatbot.
        */
     public Lucifer() throws IOException {
-        ui = new Ui();
         storage = new Storage(System.getProperty("user.dir"));
         tasks = new TaskList(storage.loadList());
         parser = new ParseCommands(tasks);
     }
-
     /**
-     * Starts the Lucifer.Lucifer chatbot.
+     * Starts the Lucifer chatbot.
      */
     private void run() {
         Scanner sc = new Scanner(System.in);
@@ -55,7 +49,6 @@ public class Lucifer {
                     throw new EmptyInputException();
                 }
                 if (command.equals("bye")) {
-                    ui.farewell();
                     storage.saveFileList(tasks.getTaskList());
                     break;
                 } else {
@@ -66,9 +59,8 @@ public class Lucifer {
             }
         }
     }
-
     /**
-     * The main method of Lucifer.Lucifer chatbot.
+     * Initializes and runs the program.
      *
      * @param args The input arguments.
      */
@@ -76,15 +68,15 @@ public class Lucifer {
         new Lucifer().run();
     }
     /**
-     * Retrieves the user input and parses the command given by user
+     * Retrieves the user input and parses the command given by user.
      */
     public String getResponse(String input) {
         String output;
         try {
-            if (input.isBlank() || input == null) {
+            if (input.isBlank()) {
                 throw new EmptyInputException();
             } else if (input.equals("bye")) {
-                output = ui.farewell() + "\nYour desires have been etched into my memories my love.";
+                output = Ui.farewell() + "\nYour desires have been etched into my memories my love.";
                 storage.saveFileList(tasks.getTaskList());
             } else {
                 output = parser.parseCommand(input);

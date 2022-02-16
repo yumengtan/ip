@@ -1,11 +1,11 @@
-package Lucifer.Commands;
+package lucifer.commands;
 
 import java.util.ArrayList;
 
-import Lucifer.LuciferExceptions.InvalidException;
-import Lucifer.LuciferExceptions.OutOfBoundsException;
-import Lucifer.Task.Task;
-import Lucifer.TaskList.TaskList;
+import lucifer.exceptions.InvalidException;
+import lucifer.exceptions.OutOfBoundsException;
+import lucifer.task.Task;
+import lucifer.tasklist.TaskList;
 
 /**
  * Class DeleteCommmands which inherits from ParseCommands.
@@ -13,7 +13,7 @@ import Lucifer.TaskList.TaskList;
  */
 public class DeleteCommands extends ParseCommands {
     /** list that stores all the task **/
-    private ArrayList<Task> list;
+    private final ArrayList<Task> list;
 
     /**
      * Constructor for Class DeleteCommands.
@@ -55,8 +55,7 @@ public class DeleteCommands extends ParseCommands {
      * @param input the user input
      */
     public String clear(String input) {
-        String[] split = input.split(" ");
-        if (!split[1].isBlank()) {
+        if (input.length() > 5) {
             return "I can't understand what you mean my dear.\n" + "for the list of desires I can grant, type !help";
         } else {
             if (list.isEmpty()) {

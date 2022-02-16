@@ -1,10 +1,10 @@
-package Lucifer.Commands;
+package lucifer.commands;
 
 import java.util.ArrayList;
 
-import Lucifer.LuciferExceptions.InvalidException;
-import Lucifer.Task.Task;
-import Lucifer.TaskList.TaskList;
+import lucifer.exceptions.WrongFormatException;
+import lucifer.task.Task;
+import lucifer.tasklist.TaskList;
 
 /**
  * Class FindCommmands which inherits from ParseCommands.
@@ -14,7 +14,7 @@ public class FindCommands extends ParseCommands {
     /**
      * list that stores all the task
      **/
-    private ArrayList<Task> list;
+    private final ArrayList<Task> list;
 
     /**
      * Constructor for Class MarkCommands.
@@ -36,7 +36,7 @@ public class FindCommands extends ParseCommands {
         try {
             String[] split = input.split(" ");
             if (split.length == 1) {
-                throw new InvalidException();
+                throw new WrongFormatException();
             } else {
                 String description = split[1];
                 String output = "Here are the matching desires in your list my love:\n";
@@ -52,7 +52,7 @@ public class FindCommands extends ParseCommands {
                 }
                 return output;
             }
-        } catch (InvalidException e) {
+        } catch (WrongFormatException e) {
             return e.getMessage();
         }
     }

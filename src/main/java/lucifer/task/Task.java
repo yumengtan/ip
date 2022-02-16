@@ -1,7 +1,7 @@
-package Lucifer.Task;
+package lucifer.task;
 
 /**
- * Class Lucifer.Task which encapsulates the task information.
+ * Class Task which encapsulates the task information.
  * @author Yu Meng
  */
 public abstract class Task {
@@ -11,26 +11,26 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * Constructor for Lucifer.Task Objects.
+     * Constructor for Task class.
      *
      * @param description the description of the task
      */
     public Task(String description) {
         this.description = description;
-        assert this.isDone = false;
+        this.isDone = false;
     }
 
     /**
      * Marks task as done.
      */
     public void markDone() {
-        assert this.isDone = true;
+        this.isDone = true;
     }
     /**
      * Marks task as not done.
      */
     public void unmarkDone() {
-        assert this.isDone = false;
+        this.isDone = false;
     }
 
     /**

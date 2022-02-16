@@ -1,9 +1,7 @@
-package Lucifer.GUI;
+package lucifer.gui;
 
 import java.util.Objects;
 
-import Lucifer.Lucifer;
-import Lucifer.UserInterface.Ui;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
@@ -11,20 +9,28 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import lucifer.Lucifer;
+import lucifer.ui.Ui;
 
 /**
- * Controller for Lucifer.GUI.MainWindow. Provides the layout for the other controls.
+ * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+    /** The scroll pane of the GUI **/
     @FXML
     private ScrollPane scrollPane;
+    /** The dialog container of the GUI **/
     @FXML
     private VBox dialogContainer;
+    /** The text box of the GUI **/
     @FXML
     private TextField userInput;
+    /** The main class of the GUI **/
     private Lucifer lucifer;
-    private Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/User.png")));
-    private Image luciferImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Lucifer.jpg")));
+    private final Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(
+            "/images/User.png")));
+    private final Image luciferImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(
+            "/images/Lucifer.jpg")));
     /**
      * Initializes the GUI.
      */
@@ -33,10 +39,12 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         String greeting = Ui.greeting();
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(greeting, luciferImage)
+                DialogBox.getLuciferDialog(greeting, luciferImage)
         );
     }
-
+    /**
+     * Sets to Lucifer class.
+     **/
     public void setLucifer(Lucifer l) {
         lucifer = l;
     }
@@ -51,10 +59,9 @@ public class MainWindow extends AnchorPane {
         String response = lucifer.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, luciferImage)
+                DialogBox.getLuciferDialog(response, luciferImage)
         );
         if (input.startsWith("bye")) {
-            Ui.farewell();
             Platform.exit();
         }
         userInput.clear();

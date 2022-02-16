@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Lucifer.GUI.MainWindow">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lucifer.gui.MainWindow">
     <children>
         <TextField fx:id="userInput" layoutY="555.0" onAction="#handleUserInput" prefHeight="45.0" prefWidth="324.0" promptText="Now tell me, what do you desire?" style="-fx-background-color: #131419; -fx-font-family: Redressed; -fx-font-style: oblique; -fx-text-fill: white; -fx-font-size: 14px;" AnchorPane.bottomAnchor="0.0">
          <font>

@@ -1,9 +1,10 @@
-package Lucifer.Commands;
+package lucifer.commands;
 
 import java.util.Arrays;
 
-import Lucifer.TaskList.TaskList;
-import Lucifer.UserInterface.Ui;
+import lucifer.exceptions.InvalidException;
+import lucifer.tasklist.TaskList;
+import lucifer.ui.Ui;
 
 /**
  * Class ParseCommands which encapsulates the command.
@@ -11,8 +12,9 @@ import Lucifer.UserInterface.Ui;
  */
 public class ParseCommands {
     /** A checker to check if it is within Lucifer.Lucifer chatbot commands **/
-    private static final String[] WORD_COMMANDS = {"todo", "deadline", "event", "list", "mark", "unmark", "delete", "find", "clear"};
-    /** Lucifer.TaskList which stores the list of user tasks. **/
+    private static final String[] WORD_COMMANDS = {"todo", "deadline", "event", "list", "mark",
+                                                   "unmark", "delete", "find", "clear"};
+    /** TaskList which stores the list of user tasks. **/
     private final TaskList task;
 
     /**
@@ -26,9 +28,10 @@ public class ParseCommands {
 
     /**
      * Parses the command from input.
-     * @return user outputs whether the input has been parsed
+     * @return user outputs whether the input has been parsed.
+     * @throws InvalidException if input does not match any of the commands.
      */
-    public String parseCommand(String command) {
+    public String parseCommand(String command) throws InvalidException {
         DeleteCommands deleter = new DeleteCommands(this.task);
         MarkCommands marker = new MarkCommands(this.task);
         FindCommands finder = new FindCommands(this.task);
@@ -58,6 +61,8 @@ public class ParseCommands {
             } else if (theCommand.equals("clear")) {
                 output = deleter.clear(command);
             }
+        } else {
+            throw new InvalidException();
         }
         return output;
     }

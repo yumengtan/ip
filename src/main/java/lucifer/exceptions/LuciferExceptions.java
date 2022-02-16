@@ -1,4 +1,4 @@
-package Lucifer.LuciferExceptions;
+package lucifer.exceptions;
 
 /**
  * Class LuciferException which inherits from Exception.

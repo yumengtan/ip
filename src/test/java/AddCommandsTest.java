@@ -2,11 +2,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import Lucifer.Commands.ParseCommands;
-import Lucifer.Task.Deadline;
-import Lucifer.Task.Event;
-import Lucifer.Task.Todo;
-import Lucifer.TaskList.TaskList;
+import lucifer.commands.ParseCommands;
+import lucifer.task.Deadline;
+import lucifer.task.Event;
+import lucifer.task.Todo;
+import lucifer.tasklist.TaskList;
 
 public class AddCommandsTest {
     private final TaskList tasks = new TaskList();

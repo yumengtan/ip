@@ -1,33 +1,39 @@
-package Lucifer.GUI;
+package lucifer.gui;
 
 import java.io.IOException;
+import java.util.Objects;
 
-import Lucifer.Lucifer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lucifer.Lucifer;
 
 /**
- * A Lucifer.GUI for Duke using FXML.
+ * A GUI for Lucifer using FXML.
  */
 public class Main extends Application {
-
-    private Lucifer lucifer = new Lucifer();
-    private Image icon = new Image(this.getClass().getResourceAsStream("/images/icon.png"));
+    /** The main class of the chatbot **/
+    private final Lucifer lucifer = new Lucifer();
+    /** The chatbot icon image **/
+    private final Image icon = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(
+            "/images/icon.png")));
 
     public Main() throws IOException {
     }
-
+    /**
+     * Sets the GUI when chatbox initializes.
+     * @param stage skeleton to be created from
+     */
     @Override
     public void start(Stage stage) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
-            stage.setTitle("Lucifer");
+            stage.setTitle("lucifer");
             stage.getIcons().add(icon);
             stage.setScene(scene);
             stage.setResizable(false);

@@ -1,39 +1,38 @@
-package Lucifer.Task;
+package lucifer.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 /**
- * Class Deadline which inherits from Lucifer.Task.
+ * Class Event which inherits from Task.
  * @author Yu Meng
  */
-public class Deadline extends Task {
+public class Event extends Task {
     /** date and time of task **/
     protected LocalDateTime dateTime;
     /** description of task **/
-    protected String by;
+    protected String at;
 
     /**
-     * Constructor for Lucifer.Task Objects.
+     * Constructor for Event class.
      *
      * @param description the description of the task
      * @param dateTime the date and time of the task
      */
-    public Deadline(String description, LocalDateTime dateTime) {
+    public Event(String description, LocalDateTime dateTime) {
         super(description);
         this.dateTime = dateTime;
-        DateTimeFormatter formater = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mma");
-        this.by = formater.format(this.dateTime);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mma");
+        this.at = formatter.format(this.dateTime);
     }
 
     /**
-     {@inheritdoc}
+     * Format to output when saving task.
      */
     @Override
     public String saveFormat() {
         DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
         String dateInString = this.dateTime.format(formatter1);
-        assert this.isDone ? true : false;
-        return "D" + " |" + (this.isDone ? "1" : "0") + "| " + this.description + " | " + dateInString;
+        return "E" + " |" + (this.isDone ? "1" : "0") + "| " + this.description + " | " + dateInString;
     }
 
     /**
@@ -41,7 +40,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.by + ")";
+        return "[E]" + super.toString() + " (at: " + this.at + ")";
     }
 }
-
