@@ -62,7 +62,7 @@ public class DeleteCommands extends ParseCommands {
                 return "You don't have any desires currently my dear.";
             } else {
                 list.clear();
-                return "Got it. I have cleared all to your desires in your list.";
+                return "Got it. I have cleared all your desires in your list.";
             }
         }
     }

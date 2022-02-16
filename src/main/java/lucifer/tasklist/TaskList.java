@@ -33,7 +33,7 @@ public class TaskList {
             return "Your list is currently empty!\n"
                     + "Please input some commands my love.\n";
         } else {
-            String output = "Here are the desires in your list:\n";
+            String output = "Here are the desires in your list my love:\n";
             for (int i = 0; i < this.list.size(); i++) {
                 int order = i + 1;
                 output += " " + order + ". " + this.list.get(i) + "\n";

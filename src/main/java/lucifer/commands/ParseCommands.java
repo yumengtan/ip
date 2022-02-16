@@ -51,7 +51,7 @@ public class ParseCommands {
             } else if (theCommand.equals("delete")) {
                 output = deleter.delete(command);
             } else if (theCommand.equals("find")) {
-                output = finder.find(commands[1]);
+                output = finder.find(command);
             } else if (theCommand.equals("todo")) {
                 output = adder.addToDo(command);
             } else if (theCommand.equals("deadline")) {

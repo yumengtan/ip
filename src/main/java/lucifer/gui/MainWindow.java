@@ -2,6 +2,7 @@ package lucifer.gui;
 
 import java.util.Objects;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
@@ -9,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import lucifer.Lucifer;
 import lucifer.ui.Ui;
 
@@ -43,7 +45,7 @@ public class MainWindow extends AnchorPane {
         );
     }
     /**
-     * Sets to Lucifer class.
+     * Sets the Lucifer class.
      **/
     public void setLucifer(Lucifer l) {
         lucifer = l;
@@ -62,7 +64,10 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getLuciferDialog(response, luciferImage)
         );
         if (input.startsWith("bye")) {
-            Platform.exit();
+            Ui.farewell();
+            PauseTransition delay = new PauseTransition(Duration.seconds(3));
+            delay.setOnFinished( event -> Platform.exit());
+            delay.play();
         }
         userInput.clear();
     }
