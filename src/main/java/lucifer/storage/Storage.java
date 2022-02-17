@@ -40,7 +40,7 @@ public class Storage {
      *
      */
     public void saveFileList(ArrayList<Task> list) throws IOException {
-        FileWriter fw = new FileWriter(filePath + "/Lucifer.Lucifer.txt");
+        FileWriter fw = new FileWriter(filePath + "/Lucifer.txt");
         StringBuilder tasks = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
             if (i == list.size() - 1) {
@@ -62,7 +62,7 @@ public class Storage {
      * @throws IOException throws exception if unable to save to directory
      */
     public ArrayList<Task> loadList() throws IOException {
-        String directory = filePath + "/Lucifer.Lucifer.txt";
+        String directory = filePath + "/Lucifer.txt";
         File file = new File(directory);
         ArrayList<Task> list = new ArrayList<>();
         try {
