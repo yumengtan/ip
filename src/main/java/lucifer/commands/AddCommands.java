@@ -53,8 +53,8 @@ public class AddCommands extends ParseCommands {
                 Event curr = new Event(description, old);
                 list.add(curr);
                 output += curr;
-                output += "Currently you have " + (list.size() == 1 ? " thing" : " things")
-                        + " things yet to be desired.";
+                output += "\nCurrently you have " + list.size() + (list.size() == 1 ? " thing" : " things")
+                        + "  yet to be desired.";
                 return output;
             }
         } catch (InvalidException e) {
@@ -86,8 +86,8 @@ public class AddCommands extends ParseCommands {
                 Deadline curr = new Deadline(description, old);
                 list.add(curr);
                 output += curr;
-                output += "\nCurrently you have " + (list.size() == 1 ? " thing" : " things")
-                        + " things yet to be desired.";
+                output += "\nCurrently you have " + list.size() + (list.size() == 1 ? " thing" : " things")
+                        + " yet to be desired.";
                 return output;
             }
         } catch (InvalidException e) {
@@ -111,7 +111,8 @@ public class AddCommands extends ParseCommands {
                 Todo curr = new Todo(description);
                 list.add(curr);
                 output += curr;
-                output += "\nCurrently you have " + (list.size() == 1 ? " thing" : " things") + " yet to be desired.";
+                output += "\nCurrently you have " + list.size() + (list.size() == 1 ? " thing" : " things")
+                        + " yet to be desired.";
                 return output;
             } else {
                 throw new WrongFormatException();
