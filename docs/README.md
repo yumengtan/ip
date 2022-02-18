@@ -32,7 +32,8 @@ Here are the desires in your list my love:
 3. [T][] run
 ```
 ***
-###`find` - Finds task based on keyword.
+
+### `find` - Finds task based on keyword.
 Example of usage:
 
 `find project`
@@ -91,7 +92,7 @@ Currently you have 2 things yet to be desired.
 
 ***
 
-### `!help` - provides the list of commands Lucifer can take in.
+### `!help` - Provides the list of commands Lucifer can take in.
 Example of usage:
 
 `!help`
@@ -127,7 +128,7 @@ Got it. I have cleared all your desires in your list.
 ```
 
 ***
-### `mark and unmark` - mark and unmark a task as done.
+### `mark and unmark` - Mark and unmark a task as done.
 Example of usage:
 `mark 1`
 `unmark 1`
@@ -144,7 +145,7 @@ OK, I've marked this task as not done yet:
 ```
 
 ***
-### `bye` - exits the application.
+### `bye` - Exits the application.
 Example of usage:
 `bye`
 
