@@ -85,7 +85,7 @@ public class Storage {
     }
 
     /**
-     * Abstraction method to add the task to the tasklist if it is an Event.
+     * Adds the task to the tasklist if it is an Event.
      *
      * @param input data abstracted from file.
      * @param list the arraylist to save the task into.
@@ -106,7 +106,7 @@ public class Storage {
         list.add(currTask);
     }
     /**
-     * Abstraction method to add the task to the tasklist if it is a Deadline.
+     * Adds the task to the tasklist if it is a Deadline.
      *
      * @param input data abstracted from file.
      * @param list the arraylist to save the task into.
@@ -126,7 +126,7 @@ public class Storage {
         list.add(currTask);
     }
     /**
-     * Abstraction method to add the task to the tasklist if it is a ToDo.
+     * Adds the task to the tasklist if it is a ToDo.
      *
      * @param input data abstracted from file.
      * @param list the arraylist to save the task into.
